@@ -1,0 +1,39 @@
+The run_analysis.R script imports, cleans and analyzes the data in five tasks required from this project.
+
+Raw data
+The raw data was downloaded and unzipped under the folder called "UCI HAR Dataset"
+
+Data processing
+Assign each data to variables
+features: dataframe, contains 561 rows, 2 columns; variable names: featureid (int), featurename (chr)
+activities: dataframe, contains 6 rows, 2 columns; variable names: activityid (int), activity (chr) 
+subject_test: dataframe, contains 2947 rows, 1 column; subject (int), describing 9/30 volunteer subjects
+x_test: dataframe, contains 2947 rows, 561 columns; testing data of features, features are named by featurename
+y_test: dataframe, contains 2947 rows, 1 columns; testing data of activities, variable name is activity
+subject_train: dataframe, contains 7352 rows, 1 column; subject (int), describing 21/30 volunteer subjects
+x_train: dataframe, contains 7352 rows, 561 columns; training data of features, features are names by featurename
+y_train: dataframe, contains 7352 rows, 1 columns, training data of activities, variable name is activity
+
+Merged data
+merge_subject: dataframe, contains 10299 rows, 1 column, combination of subject_train and subject_test using rbind() function
+merge_feature: dataframe, contains 10299 rows, 561 columns, combinaton of x_train and x_test using rbind() function
+merge_activity: dataframe, contains 10299 rows, 1 column, combination of y_train and y_test using rbind() function
+merged_data: datafram, contains 10299 rows, 563 columns, combination of merge_subject, merge_eature, merge_acvitity using cbind() function
+
+Extracts only the measurements on the mean and standard deviation for each measurement
+merged_data_new: dataframe, contains 10299 rows, 88 columns, selection of subject, code and the measurements on the mean and standard deviation (std) for each measurement
+
+Uses descriptive activity names to name the activities in the data set
+activitydata: dataframe, contains 10299 rows, 68 columns, replacing the activity code with meaningful strings
+
+Appropriately labels the data set with descriptive variable names
+code column in TidyData renamed into activities
+All start with character f in column’s name is replaced by frequency
+All start with character t in column’s name is replaced by time
+All Acc in column’s name is replaced by Accelerometer
+All Gyro in column’s name is replaced by Gyroscope
+All Mag in column’s name is replaced by Magnitude
+All BodyBody in column’s name is replaced by Body
+
+Independent clean dataset
+newdata: dataframe, contains 180 rows, 68 columns, the final clean datasets. It is exported to newdata.csv uploaded in this repo. 
